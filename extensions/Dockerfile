@@ -1,5 +1,5 @@
 # Stage 1: build k6 with local xk6-judge extension
-FROM golang:1.25 AS builder
+FROM golang:1.25@sha256:6ca9eb0b32a4bd4e8c98a4a2edf2d7c96f3ea6db6eb4fc254eef6c067cf73bb4 AS builder
 
 # Install xk6
 ENV PATH="/go/bin:${PATH}"
@@ -14,7 +14,7 @@ RUN /go/bin/xk6 build \
     --output /k6
 
 # Stage 2: minimal runtime image
-FROM grafana/k6:latest
+FROM grafana/k6:latest@sha256:290b029fa9f50fb9e5d007a0cb8d97984f71cd2a31e5a092349c284a3cfff2c2
 
 COPY --from=builder /k6 /usr/bin/k6
 
