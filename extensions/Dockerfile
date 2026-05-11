@@ -14,7 +14,7 @@ RUN /go/bin/xk6 build \
     --output /k6
 
 # Stage 2: minimal runtime image
-FROM grafana/k6:latest@sha256:ef816d99a6697f914811f99c09e7481df6989d55dec382e4d4ee49311f812459
+FROM grafana/k6:latest@sha256:632ddbc81a4a9fdc9e597da91ab1d8fcf1916dd988b43b4a4559d2f8d8e73d47
 
 COPY --from=builder /k6 /usr/bin/k6
 
