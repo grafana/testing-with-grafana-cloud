@@ -1,5 +1,7 @@
 name: Run Release Tests
 
+permissions: {}
+
 on:
   release:
     types: [published]
@@ -8,10 +10,14 @@ on:
 jobs:
   backend-tests:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
       # This exists bc if you destroy all things managed by Terraform and then re-create them... 
       # the project ID will change. This step fetches the right projectID based on the project name.
