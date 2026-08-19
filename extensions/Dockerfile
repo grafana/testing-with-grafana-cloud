@@ -1,5 +1,5 @@
 # Stage 1: build k6 with local xk6-judge extension
-FROM golang:1.25@sha256:6ca9eb0b32a4bd4e8c98a4a2edf2d7c96f3ea6db6eb4fc254eef6c067cf73bb4 AS builder
+FROM golang:1.25@sha256:699337d620559a59b4a2bb298ad59611e535d2ee755a34cf2d2a98f37578dc80 AS builder
 
 # Install xk6
 ENV PATH="/go/bin:${PATH}"
