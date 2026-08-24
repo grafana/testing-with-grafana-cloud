@@ -1,23 +1,28 @@
 .PHONY: tf-bootstrap
-tf-bootstrap: node-init tf-init tf-setup tf-apply
+tf-bootstrap: node-init build tf-init tf-setup tf-apply
 
 .PHONY: node-init
 node-init:
 	@echo "🔹 Installing Node dependencies"
 	@npm install
-	
+
+.PHONY: build
+build:
+	@echo "🔹 Bundling backend test script"
+	@npm run build:backend
+
 .PHONY: tf-init
 tf-init:
 	@echo "🔹 Initializing Terraform"
 	@terraform -chdir="./terraform" init
 
 .PHONY: tf-plan
-tf-plan:
+tf-plan: build
 	@echo "🔹 Planning Terraform changes"
 	@terraform -chdir="./terraform" plan
 
 .PHONY: tf-setup
-tf-setup:
+tf-setup: build
 	@echo "🔹 Setting up base Terraform resources"
 	@terraform -chdir=./terraform apply \
 		-target=resource.grafana_cloud_stack_service_account.testing_sa \
@@ -26,7 +31,7 @@ tf-setup:
 		-auto-approve
 
 .PHONY: tf-apply
-tf-apply:
+tf-apply: build
 	@echo "🔹 Applying Terraform resources"
 	@terraform -chdir="./terraform" apply -auto-approve
 

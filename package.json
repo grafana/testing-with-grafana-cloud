@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build:backend": "mkdir -p dist/backend && esbuild src/backend/get_recommendation.ts --bundle --outfile=dist/backend/get_recommendation.js --platform=node --external:k6 --external:https*"
+  },
   "dependencies": {
     "@grafana/openapi-to-k6": "^0.3.2",
     "@types/k6": "^1.2.0"
