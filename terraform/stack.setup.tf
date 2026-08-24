@@ -54,7 +54,7 @@ resource "grafana_cloud_access_policy" "sm_metrics_publish" {
   provider = grafana.cloud
 
   region = local.cloud_region
-  name   = "metric-publisher-for-sm"
+  name   = "metric-publisher-for-sm-${local.stack_slug}"
   scopes = ["metrics:write", "stacks:read", "logs:write", "traces:write"]
   realm {
     type       = "stack"
@@ -67,7 +67,7 @@ resource "grafana_cloud_access_policy_token" "sm_metrics_publish" {
 
   region           = local.cloud_region
   access_policy_id = grafana_cloud_access_policy.sm_metrics_publish.policy_id
-  name             = "metric-publisher-for-sm"
+  name             = "metric-publisher-for-sm-${local.stack_slug}"
 }
 
 # Install GCk6 app. If the app is already installed, this step is a no-op.
