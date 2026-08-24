@@ -1,12 +1,14 @@
 {
+  "packageManager": "npm@11.0.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "build:backend": "mkdir -p dist/backend && esbuild src/backend/get_recommendation.ts --bundle --outfile=dist/backend/get_recommendation.js --platform=node --external:k6 --external:https*"
   },
-  "dependencies": {
-    "@grafana/openapi-to-k6": "^0.3.2",
-    "@types/k6": "^1.2.0"
-  },
   "devDependencies": {
+    "@grafana/openapi-to-k6": "0.4.1",
+    "@types/k6": "1.2.0",
     "esbuild": "0.25.9"
   }
 }
