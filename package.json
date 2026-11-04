@@ -9,6 +9,6 @@
   "devDependencies": {
     "@grafana/openapi-to-k6": "0.4.1",
     "@types/k6": "1.2.0",
-    "esbuild": "0.25.9"
+    "esbuild": "0.28.2"
   }
 }
